@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COMMUNAUTÉ FRANC-MAÇONNERIE DU GRAND ORIENT TRANSFERT</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #0b1120;
+            background-image: 
+                radial-gradient(circle at 50% 20%, rgba(217, 119, 6, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 10% 80%, rgba(30, 58, 138, 0.15) 0%, transparent 40%),
+                linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 100%, 32px 32px, 32px 32px;
+        }
+        .font-cinzel { font-family: 'Cinzel', serif; }
+        
+        .masonry-watermark {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath d='M50 15 L85 80 L15 80 Z' fill='none' stroke='rgba(217,119,6,0.04)' stroke-width='1.5'/%3E%3Cpath d='M15 35 L85 35 L50 95 Z' fill='none' stroke='rgba(217,119,6,0.04)' stroke-width='1.5'/%3E%3Ctext x='50' y='60' text-anchor="middle" font-family='Cinzel' font-size='22' fill='rgba(217,119,6,0.05)'%3EG%3C/text%3E%3C/svg%3E");
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-0 sm:p-4 text-gray-800">
+
+    <!-- Container Global Mobile / Desktop -->
+    <div class="w-full max-w-md bg-slate-900 min-h-screen sm:min-h-0 sm:rounded-3xl shadow-2xl flex flex-col justify-between overflow-hidden relative border border-amber-950/40 masonry-watermark">
+
+        <!-- ÉCRAN DE CONNEXION -->
+        <div id="loginScreen" class="p-6 flex flex-col justify-center flex-grow relative z-10">
+            <div class="w-full max-w-sm mx-auto">
+                <div class="flex flex-col items-center mb-6 text-center">
+                    
+                    <!-- Emblem SVG Fraternité -->
+                    <div class="w-20 h-20 mb-3 relative flex items-center justify-center">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-amber-600/20 to-yellow-400/20 rounded-full blur-sm"></div>
+                        <svg viewBox="0 0 100 100" class="w-full h-full drop-shadow-md">
+                            <!-- Pillars J & B -->
+                            <rect x="18" y="32" width="6" height="42" rx="1" fill="#d97706" opacity="0.6"/>
+                            <rect x="76" y="32" width="6" height="42" rx="1" fill="#d97706" opacity="0.6"/>
+                            <rect x="15" y="28" width="12" height="4" fill="#fbbf24" opacity="0.8"/>
+                            <rect x="73" y="28" width="12" height="4" fill="#fbbf24" opacity="0.8"/>
+                            <rect x="15" y="74" width="12" height="4" fill="#fbbf24" opacity="0.8"/>
+                            <rect x="73" y="74" width="12" height="4" fill="#fbbf24" opacity="0.8"/>
+                            <!-- Compass & Square -->
+                            <path d="M50 16 L74 76 H64 L50 40 L36 76 H26 Z" fill="url(#goldGrad)"/>
+                            <path d="M24 46 L50 72 L76 46 L70 40 L50 60 L30 40 Z" fill="url(#goldGrad)" opacity="0.9"/>
+                            <!-- Letter G -->
+                            <text x="50" y="55" text-anchor="middle" font-family="'Cinzel', serif" font-weight="bold" font-size="17" fill="#fef3c7">G</text>
+                            <defs>
+                                <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#fef3c7"/>
+                                    <stop offset="50%" stop-color="#d97706"/>
+                                    <stop offset="100%" stop-color="#78350f"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+
+                    <h1 class="text-xs font-black tracking-widest text-amber-400 font-cinzel uppercase px-2 leading-relaxed">
+                        COMMUNAUTÉ FRANC-MAÇONNERIE DU GRAND ORIENT TRANSFERT
+                    </h1>
+                    <p class="text-xs text-slate-400 mt-1 font-light">Espace Membres Sécurisé</p>
+
+                    <div class="mt-3 inline-flex items-center px-3 py-1 bg-slate-800/80 rounded-full text-[11px] font-medium text-amber-200 border border-amber-900/40 shadow-inner">
+                        <i class="fa-solid fa-user-shield mr-1.5 text-amber-500"></i> <span id="currentUserPreview">VEUILLEZ VOUS CONNECTER</span>
+                    </div>
+                </div>
+
+                <form id="loginForm" onsubmit="handleLogin(event)" class="space-y-4">
+                    <div>
+                        <div class="relative flex items-center">
+                            <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-amber-500/70">
+                                <i class="fa-regular fa-envelope"></i>
+                            </span>
+                            <input type="email" id="emailInput" value="" placeholder="Votre adresse e-mail" required oninput="updatePreviewName()"
+                                class="w-full pl-10 pr-4 py-3 bg-slate-800/90 border border-slate-700/80 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 text-xs text-gray-100 placeholder-slate-500">
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="relative flex items-center">
+                            <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-amber-500/70">
+                                <i class="fa-solid fa-key"></i>
+                            </span>
+                            <input type="password" id="passcodeInput" value="" required placeholder="Votre Code PIN d'accès"
+                                class="w-full pl-10 pr-4 py-3 bg-slate-800/90 border border-slate-700/80 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 text-xs text-gray-100 placeholder-slate-500">
+                        </div>
+                    </div>
+
+                    <button type="submit" 
+                        class="w-full bg-gradient-to-r from-amber-600 via-yellow-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-slate-950 font-bold py-3 px-4 rounded-xl shadow-lg shadow-amber-900/30 transition duration-200 flex items-center justify-center space-x-2 text-xs uppercase tracking-wider">
+                        <span>Se connecter à l'Espace</span>
+                        <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- TABLEAU DE BORD (Masqué par défaut jusqu'à la connexion) -->
+        <div id="dashboardScreen" class="hidden flex flex-col min-h-screen bg-slate-100">
+            <!-- Header Maçonnique -->
+            <header class="bg-slate-900 text-white border-b border-amber-900/30 px-4 py-3 flex items-center justify-between sticky top-0 z-50 shadow-md">
+                <div class="flex items-center space-x-2 overflow-hidden">
+                    <button onclick="toggleMenu()" class="text-amber-400 text-base p-1 flex-shrink-0">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                    <div class="flex items-center space-x-1.5 overflow-hidden">
+                        <i class="fa-solid fa-compass text-amber-500 text-xs"></i>
+                        <span class="font-cinzel font-bold text-amber-400 tracking-wider text-[11px] truncate">GRAND ORIENT TRANSFERT</span>
+                    </div>
+                </div>
+                <div id="headerInitials" class="w-8 h-8 bg-gradient-to-br from-amber-600 to-amber-900 rounded-full flex items-center justify-center text-amber-100 font-bold text-xs border border-amber-400/30 flex-shrink-0 shadow">
+                    --
+                </div>
+            </header>
+
+            <!-- Contenu principal des onglets -->
+            <main class="p-4 flex-grow pb-24 overflow-y-auto">
+                
+                <!-- ONGLET 1 : SOLDE -->
+                <div id="tab-solde" class="tab-content space-y-4">
+                    <p class="text-slate-900 font-semibold text-xs" id="welcomeUserText">Bienvenue Cher Frère,</p>
+
+                    <!-- Notification d'accréditation -->
+                    <div id="notificationCard" class="bg-emerald-900/10 border border-emerald-600/30 rounded-2xl p-4 relative shadow-sm">
+                        <button onclick="closeNotification()" class="absolute top-3 right-3 text-emerald-800 hover:text-emerald-950">
+                            <i class="fa-solid fa-xmark text-xs"></i>
+                        </button>
+                        <div class="flex items-start space-x-2.5">
+                            <i class="fa-solid fa-circle-check text-emerald-600 mt-0.5 text-sm"></i>
+                            <p class="text-[11px] text-emerald-900 leading-relaxed pr-4">
+                                Un virement de <strong class="font-bold text-emerald-950" id="notifAmountDisplay">60 000 000,00 XOF</strong> a été crédité sur votre compte. Vous pouvez effectuer un virement bancaire ou Mobile Money.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Carte Solde Presticieuse -->
+                    <div class="bg-gradient-to-br from-slate-900 via-slate-800 to-amber-950 text-white rounded-2xl p-5 shadow-xl relative overflow-hidden border border-amber-500/20">
+                        <div class="absolute -right-8 -bottom-8 w-36 h-36 bg-amber-500/10 rounded-full pointer-events-none blur-xl"></div>
+                        <div class="flex items-center space-x-2 text-amber-300/80 text-[11px] mb-1 font-medium">
+                            <i class="fa-solid fa-vault text-amber-400"></i>
+                            <span>Solde disponible sur le compte :</span>
+                        </div>
+                        <div class="text-2xl sm:text-3xl font-extrabold tracking-tight mb-4 text-amber-100 font-cinzel" id="mainBalanceDisplay">
+                            0,00 <span class="text-amber-400 font-bold text-xl">XOF</span>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button onclick="switchTab('virement')" class="bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-400 hover:to-yellow-400 text-slate-950 text-[11px] font-bold py-2.5 px-3.5 rounded-xl transition shadow-md flex items-center space-x-1.5 uppercase tracking-wide">
+                                <span>Virement rapide</span>
+                                <i class="fa-solid fa-arrow-right text-[9px]"></i>
+                            </button>
+                            <button onclick="switchTab('carte')" class="bg-slate-800/90 hover:bg-slate-800 text-amber-300 text-[11px] font-semibold py-2.5 px-3 rounded-xl transition border border-amber-500/30 flex items-center space-x-1">
+                                <span>Ma Carte Pro</span>
+                                <i class="fa-solid fa-chevron-right text-[9px]"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Sélecteur de Devise -->
+                    <div class="bg-white border border-slate-200 rounded-xl p-3 shadow-sm flex items-center justify-between">
+                        <span class="text-xs text-slate-700 font-medium"><i class="fa-solid fa-coins mr-1.5 text-amber-600"></i> Devise d'affichage :</span>
+                        <select id="currencySelector" onchange="changeCurrency(this.value)" class="bg-slate-50 border border-slate-300 text-xs rounded-lg px-2.5 py-1.5 focus:ring-2 focus:ring-amber-500 font-bold text-slate-900">
+                            <option value="XOF">XOF (FCFA)</option>
+                            <option value="EUR">EUR (€)</option>
+                            <option value="USD">USD ($)</option>
+                        </select>
+                    </div>
+
+                    <!-- Historique des transactions -->
+                    <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm space-y-3">
+                        <h3 class="font-bold text-xs text-slate-800 uppercase tracking-wider flex items-center">
+                            <i class="fa-solid fa-clock-rotate-left mr-2 text-amber-600"></i> Historique des opérations
+                        </h3>
+                        <div id="transactionHistoryContainer" class="space-y-2">
+                            <!-- Les opérations et tentatives de virement s'affichent dynamiquement ici -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ONGLET 2 : CARTE PRO LUXE -->
+                <div id="tab-carte" class="tab-content hidden space-y-4">
+                    <div id="cardNoticeBox" class="bg-amber-500/10 border border-amber-500/30 rounded-2xl p-4 relative shadow-sm">
+                        <button onclick="document.getElementById('cardNoticeBox').style.display='none'" class="absolute top-3 right-3 text-amber-800">
+                            <i class="fa-solid fa-xmark text-xs"></i>
+                        </button>
+                        <p class="text-xs text-amber-950 leading-relaxed pr-4">
+                            Votre carte d'Ordre est générée. Pour libérer vos virements vers l'extérieur, l'activation préalable de la carte est requise.
+                        </p>
+                    </div>
+
+                    <!-- CARTE BANCAIRE MAÇONNIQUE UNIQUE (Fond Damier & Or avec Masquage) -->
+                    <div id="visualCardContainer" class="w-full aspect-[1.586/1] bg-slate-950 text-white rounded-2xl p-5 shadow-2xl relative overflow-hidden border border-amber-500/40 flex flex-col justify-between"
+                         style="background-image: radial-gradient(circle at 50% 50%, rgba(30, 41, 59, 0.8) 0%, rgba(2, 6, 23, 0.98) 100%), linear-gradient(45deg, rgba(217, 119, 6, 0.05) 25%, transparent 25%), linear-gradient(-45deg, rgba(217, 119, 6, 0.05) 25%, transparent 25%), linear-gradient(45deg, transparent 75%, rgba(217, 119, 6, 0.05) 75%), linear-gradient(-45deg, transparent 75%, rgba(217, 119, 6, 0.05) 75%); background-size: 100% 100%, 20px 20px, 20px 20px, 20px 20px, 20px 20px;">
+                        
+                        <!-- Emblem Filigrane central -->
+                        <div class="absolute inset-0 flex items-center justify-center opacity-25 pointer-events-none">
+                            <svg viewBox="0 0 100 100" class="w-40 h-40">
+                                <path d="M50 10 L85 85 L15 85 Z" fill="none" stroke="#fbbf24" stroke-width="2"/>
+                                <path d="M15 35 L85 35 L50 95 Z" fill="none" stroke="#fbbf24" stroke-width="2"/>
+                                <text x="50" y="60" text-anchor="middle" font-family="'Cinzel', serif" font-weight="bold" font-size="28" fill="#fbbf24">G</text>
+                            </svg>
+                        </div>
+
+                        <!-- Top Card Header -->
+                        <div class="flex justify-between items-start z-10">
+                            <div>
+                                <div class="flex items-center space-x-1.5">
+                                    <i class="fa-solid fa-shield text-amber-400 text-xs"></i>
+                                    <span class="font-cinzel font-bold text-amber-300 tracking-widest text-[10px]">GRAND ORIENT TRANSFERT</span>
+                                </div>
+                                <p class="text-[8px] text-amber-500/70 tracking-wider uppercase">Carte Membre d'Élite</p>
+                            </div>
+                            <div class="text-[9px] font-mono font-bold bg-gradient-to-r from-amber-500 to-yellow-600 text-slate-950 px-2 py-0.5 rounded shadow-sm">
+                                VISA PRO
+                            </div>
+                        </div>
+
+                        <!-- Numéro de carte avec masquage XXXX -->
+                        <div class="z-10 my-auto">
+                            <p class="text-[8px] uppercase tracking-widest text-slate-400 mb-1">Numéro de carte</p>
+                            <div class="text-base sm:text-lg font-mono font-extrabold tracking-widest text-amber-200 drop-shadow">
+                                4987 <span class="text-amber-500/80">XXXX XXXX</span> 2927
+                            </div>
+                        </div>
+
+                        <!-- Footer Card -->
+                        <div class="flex justify-between items-end z-10 pt-2 border-t border-amber-900/30">
+                            <div>
+                                <p class="text-[8px] uppercase tracking-wider text-slate-400">Titulaire</p>
+                                <p class="text-xs font-bold uppercase tracking-wide text-amber-100" id="cardHolderName">MEMBRE ACCRÉDITÉ</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-[8px] uppercase tracking-wider text-slate-400">Expire fin</p>
+                                <p class="text-[11px] font-mono text-amber-200">10/2029</p>
+                            </div>
+                            <!-- Hologramme Columns J&B -->
+                            <div class="w-8 h-8 rounded bg-gradient-to-tr from-yellow-300 via-amber-500 to-yellow-100 p-0.5 shadow flex items-center justify-center opacity-90">
+                                <span class="text-[7px] font-bold text-slate-950 font-mono tracking-tighter">J & B</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex space-x-3 pt-2">
+                        <button onclick="activateCard()" class="flex-1 bg-gradient-to-r from-emerald-600 to-teal-700 hover:from-emerald-500 hover:to-teal-600 text-white font-bold py-3 rounded-xl text-xs transition shadow-md">
+                            Activer ma carte
+                        </button>
+                        <button onclick="blockCard()" class="flex-1 bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold py-3 rounded-xl text-xs transition border border-slate-700">
+                            Sécuriser la carte
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ONGLET 3 : VIREMENT (BANCAIRE OU MOBILE MONEY) -->
+                <div id="tab-virement" class="tab-content hidden space-y-4">
+                    
+                    <!-- Formulaire initial de virement -->
+                    <div id="transferStep1" class="space-y-4">
+                        <div class="flex items-center justify-between text-slate-900">
+                            <h2 class="font-bold text-xs uppercase tracking-wider flex items-center">
+                                <i class="fa-solid fa-paper-plane text-amber-600 mr-1.5"></i> Virement Sortant
+                            </h2>
+                            <span class="text-[10px] bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full font-bold">Sécurisé</span>
+                        </div>
+
+                        <!-- Card Montant disponible -->
+                        <div class="bg-slate-900 text-amber-400 border border-amber-900/40 rounded-2xl p-4 text-center shadow-inner">
+                            <p class="text-[10px] text-slate-400 uppercase tracking-widest mb-1">Montant max transférable</p>
+                            <div class="text-2xl font-black font-cinzel text-amber-200" id="transferableAmount">0,00</div>
+                            <div class="text-xs font-bold text-amber-500" id="transferableCurrency">XOF</div>
+                        </div>
+
+                        <!-- Sélecteur Mode de Virement -->
+                        <div class="bg-slate-200 p-1 rounded-xl flex text-xs font-semibold">
+                            <button type="button" id="btnModeBank" onclick="setTransferMode('bank')" class="flex-1 py-2 rounded-lg font-bold transition bg-white text-slate-950 shadow">
+                                <i class="fa-solid fa-building-columns mr-1"></i> Virement Bancaire
+                            </button>
+                            <button type="button" id="btnModeMobile" onclick="setTransferMode('mobile')" class="flex-1 py-2 rounded-lg font-bold transition text-slate-600 hover:text-slate-950">
+                                <i class="fa-solid fa-mobile-screen-button mr-1"></i> Mobile Money
+                            </button>
+                        </div>
+
+                        <!-- Formulaire Virement Bancaire -->
+                        <form id="transferForm" onsubmit="handleTransferSubmit(event)" class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm space-y-3">
+                            <div class="flex items-center space-x-2 text-xs font-bold text-slate-800 bg-slate-100 p-2 rounded-lg">
+                                <i class="fa-solid fa-landmark text-amber-600"></i>
+                                <span>Coordonnées de la Banque Bénéficiaire</span>
+                            </div>
+                            <div class="space-y-3">
+                                <div>
+                                    <input type="text" id="transferIban" required placeholder="IBAN / Numéro de Compte (ex: FR76...)" value="" class="w-full p-3 text-xs bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-amber-500 uppercase">
+                                    <p id="ibanError" class="text-[10px] text-red-600 mt-1 hidden">* L'IBAN saisi doit être valide (Format FR76...).</p>
+                                </div>
+                                <input type="text" id="transferBic" required placeholder="Code BIC / SWIFT de la banque" value="" class="w-full p-3 text-xs bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-amber-500 uppercase">
+                                <input type="text" id="transferBank" required placeholder="Nom complet de la Banque" value="" class="w-full p-3 text-xs bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-amber-500">
+                                <input type="text" id="transferBeneficiary" required placeholder="Nom & Prénom du Bénéficiaire" value="" class="w-full p-3 text-xs bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-amber-500">
+                                <input type="text" id="transferReason" placeholder="Motif du virement (facultatif)" value="" class="w-full p-3 text-xs bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-amber-500">
+                            </div>
+                            
+                            <button type="submit" class="w-full bg-slate-900 hover:bg-slate-800 text-amber-400 font-bold py-3.5 rounded-xl text-xs transition shadow-md flex items-center justify-center space-x-2 uppercase tracking-wider">
+                                <span>Suivant - Vérification</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </button>
+                        </form>
+
+                        <!-- Formulaire Virement Mobile Money -->
+                        <form id="mobileTransferForm" onsubmit="handleMobileTransferSubmit(event)" class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm space-y-3 hidden">
+                            <div class="flex items-center space-x-2 text-xs font-bold text-slate-800 bg-amber-50 p-2 rounded-lg">
+                                <i class="fa-solid fa-wallet text-amber-600"></i>
+                                <span>Coordonnées Mobile Money Africain</span>
+                            </div>
+                            
+                            <div class="space-y-3">
+                                <div>
+                                    <label class="text-[10px] font-bold text-slate-600 block mb-1">Sélectionnez le pays :</label>
+                                    <select id="mobileCountry" onchange="updateMobileOperators()" class="w-full p-3 text-xs bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-amber-500 font-semibold">
+                                        <!-- Afrique de l'Ouest -->
+                                        <optgroup label="Afrique de l'Ouest">
+                                            <option value="BJ">Bénin (+229)</option>
+                                            <option value="BF">Burkina Faso (+226)</option>
+                                            <option value="CV">Cap-Vert (+238)</option>
+                                            <option value="CI" selected>Côte d'Ivoire (+225)</option>
+                                            <option value="GM">Gambie (+220)</option>
+                                            <option value="GH">Ghana (+233)</option>
+                                            <option value="GN">Guinée (+224)</option>
+                                            <option value="GW">Guinée-Bissau (+245)</option>
+                                            <option value="LR">Libéria (+231)</option>
+                                            <option value="ML">Mali (+223)</option>
+                                            <option value="NE">Niger (+227)</option>
+                                            <option value="NG">Nigéria (+234)</option>
+                                            <option value="SN">Sénégal (+221)</option>
+                                            <option value="SL">Sierra Leone (+232)</option>
+                                            <option value="TG">Togo (+228)</option>
+                                        </optgroup>
+                                        <!-- Afrique Centrale -->
+                                        <optgroup label="Afrique Centrale">
+                                            <option value="CM">Cameroun (+237)</option>
+                                            <option value="CF">République Centrafricaine (+236)</option>
+                                            <option value="CG">Congo-Brazzaville (+242)</option>
+                                            <option value="CD">RDC - Congo (+243)</option>
+                                            <option value="GA">Gabon (+241)</option>
+                                            <option value="GQ">Guinée Équatoriale (+240)</option>
+                                            <option value="ST">Sao Tomé-et-Principe (+239)</option>
+                                            <option value="TD">Tchad (+235)</option>
+                                        </optgroup>
+                                        <!-- Afrique de l'Est -->
+                                        <optgroup label="Afrique de l'Est">
+                                            <option value="BI">Burundi (+257)</option>
+                                            <option value="DJ">Djibouti (+253)</option>
+                                            <option value="ER">Érythrée (+291)</option>
+                                            <option value="ET">Éthiopie (+251)</option>
+                                            <option value="KE">Kenya (+254)</option>
+                                            <option value="UG">Ouganda (+256)</option>
+                                            <option value="RW">Rwanda (+250)</option>
+                                            <option value="SO">Somalie (+252)</option>
+                                            <option value="SS">Soudan du Sud (+211)</option>
+                                            <option value="TZ">Tanzanie (+255)</option>
+                                        </optgroup>
+                                        <!-- Afrique Australe -->
+                                        <optgroup label="Afrique Australe">
+                                            <option value="ZA">Afrique du Sud (+27)</option>
+                                            <option value="AO">Angola (+244)</option>
+                                            <option value="BW">Botswana (+267)</option>
+                                            <option value="KM">Comores (+269)</option>
+                                            <option value="SZ">Eswatini (+268)</option>
+                                            <option value="LS">Lesotho (+266)</option>
+                                            <option value="MG">Madagascar (+261)</option>
+                                            <option value="MW">Malawi (+265)</option>
+                                            <option value="MU">Maurice (+230)</option>
+                                            <option value="MZ">Mozambique (+258)</option>
+                                            <option value="NA">Namibie (+264)</option>
+                                            <option value="ZM">Zambie (+260)</option>
+                                            <option value="ZW">Zimbabwe (+263)</option>
+                                        </optgroup>
+                                        <!-- Afrique du Nord -->
+                                        <optgroup label="Afrique du Nord">
+                                            <option value="DZ">Algérie (+213)</option>
+                                            <option value="EG">Égypte (+20)</option>
+                                            <option value="MA">Maroc (+212)</option>
+                                            <option value="MR">Mauritanie (+222)</option>
+                                            <option value="SD">Soudan (+249)</option>
+                                            <option value="TN">Tunisie (+216)</option>
+                                        </optgroup>
+                                    </select>
+                                </div>
+
+                                <div>
+                                    <label class="text-[10px] font-bold text-slate-600 block mb-1">Opérateur Réseau :</label>
+                                    <select id="mobileOperator" class="w-full p-3 text-xs bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-amber-500 font-bold text-slate-900">
+                                        <!-- Généré dynamiquement -->
+                                    </select>
+                                </div>
+
+                                <input type="text" id="mobileAccountName" required placeholder="Nom & Prénom associés au compte Mobile" value="" class="w-full p-3 text-xs bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-amber-500">
+                                <input type="tel" id="mobilePhoneNumber" required placeholder="Numéro de Téléphone Mobile (ex: +225 01...)" value="" class="w-full p-3 text-xs bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-amber-500 font-mono">
+                                <input type="text" id="mobileReason" placeholder="Motif du virement (facultatif)" value="" class="w-full p-3 text-xs bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-amber-500">
+                            </div>
+
+                            <button type="submit" class="w-full bg-slate-900 hover:bg-slate-800 text-amber-400 font-bold py-3.5 rounded-xl text-xs transition shadow-md flex items-center justify-center space-x-2 uppercase tracking-wider">
+                                <span>Suivant - Vérification</span>
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </button>
+                        </form>
+
+                    </div>
+
+                    <!-- Étape 2 : Vérification d'identité par Code PIN -->
+                    <div id="transferStep2" class="hidden space-y-4">
+                        <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm space-y-2 text-xs">
+                            <div class="flex items-center space-x-2 text-slate-900 font-bold mb-2 border-b pb-2">
+                                <i class="fa-solid fa-receipt text-amber-600"></i>
+                                <span>Récapitulatif de l'opération</span>
+                            </div>
+                            <p class="flex justify-between"><span class="text-slate-500">Type de virement:</span> <strong id="summaryMode" class="text-slate-800 font-semibold"></strong></p>
+                            <p class="flex justify-between"><span class="text-slate-500">Montant total:</span> <strong id="summaryAmountText" class="text-emerald-700 font-bold">0,00 XOF</strong></p>
+                            
+                            <div id="rowSummaryIban" class="flex justify-between"><span class="text-slate-500">IBAN / Compte:</span> <strong id="summaryIban" class="text-slate-800 font-mono"></strong></div>
+                            <div id="rowSummaryBic" class="flex justify-between"><span class="text-slate-500">Code BIC/SWIFT:</span> <strong id="summaryBic" class="text-slate-800 font-mono"></strong></div>
+                            <div id="rowSummaryBank" class="flex justify-between"><span class="text-slate-500">Banque:</span> <strong id="summaryBank" class="text-slate-800"></strong></div>
+                            
+                            <div id="rowSummaryOperator" class="flex justify-between hidden"><span class="text-slate-500">Opérateur:</span> <strong id="summaryOperator" class="text-slate-800"></strong></div>
+                            <div id="rowSummaryPhone" class="flex justify-between hidden"><span class="text-slate-500">Numéro Mobile:</span> <strong id="summaryPhone" class="text-slate-800 font-mono"></strong></div>
+                            
+                            <p class="flex justify-between"><span class="text-slate-500">Bénéficiaire:</span> <strong id="summaryBeneficiary" class="text-slate-800 uppercase"></strong></p>
+                            <p class="flex justify-between"><span class="text-slate-500">Motif:</span> <strong id="summaryReason" class="text-slate-700"></strong></p>
+                        </div>
+
+                        <form onsubmit="handleVerifyCode(event)" class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm space-y-4">
+                            <div class="flex items-center space-x-2 text-xs font-bold text-amber-900 bg-amber-50 p-2.5 rounded-xl border border-amber-200">
+                                <i class="fa-solid fa-shield-halved text-amber-600"></i>
+                                <span>Validation par Code PIN Sécurisé</span>
+                            </div>
+                            <p class="text-[11px] text-slate-600 leading-relaxed">
+                                Pour des raisons de sécurité, veuillez saisir votre <strong>Code PIN d'accès</strong> personnel afin de signer l'ordre d'envoi :
+                            </p>
+                            
+                            <input type="password" id="securityCodeInput" required placeholder="Entrez votre Code PIN" 
+                                class="w-full p-3.5 text-xs bg-slate-50 border border-slate-300 rounded-xl focus:ring-2 focus:ring-amber-500 text-center font-mono tracking-widest text-base font-bold">
+                            
+                            <p id="codeErrorMsg" class="text-[11px] text-red-600 font-semibold hidden flex items-center justify-center space-x-1">
+                                <i class="fa-solid fa-circle-exclamation"></i>
+                                <span>Code PIN incorrect. Veuillez réessayer...</span>
+                            </p>
+
+                            <div class="flex space-x-2 pt-1">
+                                <button type="button" onclick="cancelTransferStep2()" class="w-1/3 bg-slate-200 hover:bg-slate-300 text-slate-800 font-semibold py-3 rounded-xl text-xs transition">
+                                    Retour
+                                </button>
+                                <button type="submit" class="w-2/3 bg-gradient-to-r from-amber-600 to-yellow-600 hover:from-amber-500 hover:to-yellow-500 text-slate-950 font-bold py-3 rounded-xl text-xs transition shadow-md flex items-center justify-center space-x-2 uppercase">
+                                    <span>Confirmer l'envoi</span>
+                                    <i class="fa-solid fa-lock text-[10px]"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+
+                <!-- ONGLET 4 : MON COMPTE -->
+                <div id="tab-mon-compte" class="tab-content hidden space-y-4">
+                    <div class="bg-slate-900 border border-amber-500/30 rounded-2xl p-4 shadow-md text-white">
+                        <div class="flex items-center space-x-3 mb-2">
+                            <i class="fa-solid fa-user-gear text-amber-400 text-base"></i>
+                            <h3 class="font-cinzel font-bold text-xs text-amber-300 uppercase tracking-wider">Profil Fraternité</h3>
+                        </div>
+                        <p class="text-[11px] text-slate-300 leading-relaxed">
+                            Compte accrédité et reconnu par l'Ordre.
+                        </p>
+                    </div>
+
+                    <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm space-y-3">
+                        <h3 class="font-bold text-xs text-slate-800 flex items-center border-b pb-2">
+                            <i class="fa-regular fa-id-card mr-2 text-amber-600"></i> Informations d'Identité
+                        </h3>
+                        <div class="text-xs space-y-2">
+                            <p><span class="text-slate-400 block text-[10px]">Titulaire principal:</span> <strong class="text-slate-900 font-bold" id="profileName">-</strong></p>
+                            <p><span class="text-slate-400 block text-[10px]">Adresse e-mail enregistrée:</span> <strong class="text-slate-900" id="profileEmail">-</strong></p>
+                            <p><span class="text-slate-400 block text-[10px]">Téléphone associé:</span> <strong class="text-slate-900 font-mono" id="profilePhone">-</strong></p>
+                            <p><span class="text-slate-400 block text-[10px]">Pays de résidence:</span> <strong class="text-slate-900" id="profileCountry">-</strong></p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm space-y-3">
+                        <h3 class="font-bold text-xs text-slate-800 flex items-center border-b pb-2">
+                            <i class="fa-solid fa-vault mr-2 text-amber-600"></i> Statut & Solde
+                        </h3>
+                        <div class="text-xs space-y-2">
+                            <p><span class="text-slate-400 block text-[10px]">Solde certifié:</span> <strong class="text-emerald-700 font-bold" id="accountProfileBalance">0,00 XOF</strong></p>
+                            <p><span class="text-slate-400 block text-[10px]">Niveau d'Accréditation:</span> <strong class="text-amber-800">Compte d'Élite Pro</strong></p>
+                            <p><span class="text-slate-400 block text-[10px]">État du compte:</span> <strong class="text-emerald-600"><i class="fa-solid fa-circle text-[7px] mr-1"></i> Actif & Vérifié</strong></p>
+                        </div>
+                    </div>
+
+                    <button onclick="handleLogout()" class="w-full bg-red-50 hover:bg-red-100 text-red-700 border border-red-200 font-bold py-3 rounded-xl text-xs transition flex items-center justify-center space-x-2">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        <span>Déconnexion de la Session</span>
+                    </button>
+                </div>
+
+            </main>
+
+            <!-- Navigation inférieure mobile (Bottom Nav) -->
+            <nav class="bg-slate-900 border-t border-amber-900/40 py-2.5 px-6 flex justify-around items-center fixed bottom-0 left-0 right-0 max-w-md mx-auto z-50">
+                <button onclick="switchTab('solde')" id="nav-solde" class="nav-btn flex flex-col items-center text-amber-500">
+                    <i class="fa-solid fa-wallet text-base mb-0.5"></i>
+                    <span class="text-[9px] font-semibold">Solde</span>
+                </button>
+                <button onclick="switchTab('carte')" id="nav-carte" class="nav-btn flex flex-col items-center text-slate-400 hover:text-amber-400">
+                    <i class="fa-solid fa-credit-card text-base mb-0.5"></i>
+                    <span class="text-[9px] font-semibold">Ma Carte</span>
+                </button>
+                <button onclick="switchTab('virement')" id="nav-virement" class="nav-btn flex flex-col items-center text-slate-400 hover:text-amber-400">
+                    <i class="fa-solid fa-paper-plane text-base mb-0.5"></i>
+                    <span class="text-[9px] font-semibold">Virement</span>
+                </button>
+                <button onclick="switchTab('mon-compte')" id="nav-mon-compte" class="nav-btn flex flex-col items-center text-slate-400 hover:text-amber-400">
+                    <i class="fa-solid fa-user-shield text-base mb-0.5"></i>
+                    <span class="text-[9px] font-semibold">Compte</span>
+                </button>
+            </nav>
+        </div>
+
+        <!-- Toast Notification -->
+        <div id="toast" class="fixed top-4 left-1/2 transform -translate-x-1/2 bg-slate-950 text-amber-300 text-xs px-4 py-2.5 rounded-xl shadow-2xl border border-amber-500/30 z-[100] hidden flex items-center space-x-2 font-medium">
+            <i class="fa-solid fa-spinner animate-spin text-amber-500"></i>
+            <span id="toastMessage">Chargement...</span>
+        </div>
+
+    </div>
+
+    <!-- MODAL CUSTOM D'ALERTE -->
+    <div id="customModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-[200] hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-xs w-full p-5 shadow-2xl space-y-4 relative border border-slate-200 text-center">
+            <button onclick="closeModal()" class="absolute top-3.5 right-3.5 text-slate-400 hover:text-slate-600">
+                <i class="fa-solid fa-xmark text-sm"></i>
+            </button>
+            <div id="modalIconContainer" class="w-12 h-12 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center mx-auto text-xl shadow-sm">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+            <h3 id="modalTitle" class="font-bold text-slate-900 text-sm">Notification</h3>
+            <p id="modalText" class="text-xs text-slate-600 leading-relaxed font-medium">Message...</p>
+            <button onclick="closeModal()" class="w-full bg-slate-900 hover:bg-slate-800 text-amber-400 font-bold py-3 rounded-xl text-xs transition uppercase tracking-wider">
+                Compris
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // --- 1. DÉFINITION DES FONCTIONS GLOBALES AU DÉBUT DU SCRIPT ---
+
+        // Base des utilisateurs préinscrits (Mise à jour avec Arsène Kouyo)
+        const defaultUsersDatabase = [
+            { id: 1, email: "akouyooze@gmail.com", passcode: "985400", name: "ARSÈNE KOUYO", phone: "+225 0150801327", country: "Côte d'Ivoire (+225)", balanceXOF: 60000000.00 },
+            { id: 2, email: "codjo.muhammad@gmail.com", passcode: "371204", name: "CODJO MUHAMMAD", phone: "+229 01 00000065", country: "Bénin (+229)", balanceXOF: 60000000.00 },
+            { id: 3, email: "ikram.sitou@gmail.com", passcode: "742408", name: "IKRAM SITOU", phone: "+229 90 00 0002", country: "Bénin (+229)", balanceXOF: 60000000.00 },
+            { id: 4, email: "jean.dupont@gmail.com", passcode: "113612", name: "JEAN DUPONT", phone: "+229 90 00 0003", country: "Bénin (+229)", balanceXOF: 60000000.00 },
+            { id: 5, email: "aminata.diallo@gmail.com", passcode: "484816", name: "AMINATA DIALLO", phone: "+229 90 00 0004", country: "Bénin (+229)", balanceXOF: 60000000.00 },
+            { id: 6, email: "kouassi.yao@gmail.com", passcode: "856020", name: "KOUASSI YAO", phone: "+229 90 00 0005", country: "Bénin (+229)", balanceXOF: 60000000.00 },
+            { id: 7, email: "fatou.bintou@gmail.com", passcode: "227224", name: "FATOU BINTOU", phone: "+229 90 00 0006", country: "Bénin (+229)", balanceXOF: 60000000.00 },
+            { id: 8, email: "mohamed.ali@gmail.com", passcode: "598428", name: "MOHAMED ALI", phone: "+229 90 00 0007", country: "Bénin (+229)", balanceXOF: 60000000.00 },
+            { id: 9, email: "chancelle.k@gmail.com", passcode: "969632", name: "CHANCELLE KOSSOU", phone: "+229 97 11 22 33", country: "Bénin (+229)", balanceXOF: 60000000.00 },
+            { id: 10, email: "brice.tossa@gmail.com", passcode: "340836", name: "BRICE TOSSA", phone: "+229 95 44 55 66", country: "Bénin (+229)", balanceXOF: 60000000.00 }
+        ];
+
+        // Générer le reste jusqu'à 150
+        for(let i = 11; i <= 150; i++) {
+            let pCode = String((371204 + (i - 1) * 371204) % 1000000).padStart(6, '0');
+            defaultUsersDatabase.push({
+                id: i,
+                email: `utilisateur${i}@transferwire.com`,
+                passcode: pCode,
+                name: `UTILISATEUR TEST ${i}`,
+                phone: `+229 90 00 ${String(i).padStart(4, '0')}`,
+                country: "Bénin (+229)",
+                balanceXOF: 60000000.00
+            });
+        }
+
+        function getDatabase() {
+            const versionKey = 'communaute_franc_maconnerie_v9';
+            const saved = localStorage.getItem(versionKey);
+            if (!saved) {
+                localStorage.setItem(versionKey, JSON.stringify(defaultUsersDatabase));
+                return defaultUsersDatabase;
+            }
+            try {
+                return JSON.parse(saved);
+            } catch(e) {
+                return defaultUsersDatabase;
+            }
+        }
+
+        let usersDatabase = getDatabase();
+        let currentUser = null;
+        let currentCurrency = 'XOF';
+        let currentTransferType = 'bank';
+        let appState = { transferData: null };
+
+        // Gestion de l'historique des opérations et tentatives par utilisateur
+        function getUserTransactions(userId) {
+            const key = `transactions_history_${userId}`;
+            const saved = localStorage.getItem(key);
+            if (saved) {
+                try {
+                    return JSON.parse(saved);
+                } catch (e) {}
+            }
+            // Opération initiale par défaut (Accréditation)
+            const defaultTx = [
+                {
+                    id: 'init-1',
+                    type: 'credit',
+                    title: 'Accréditation Fraternelle',
+                    subtitle: 'Règlement d\'Ordre Majeur',
+                    dateStr: '01/01/2026 à 09:00',
+                    amountXOF: 60000000.00,
+                    status: 'success'
+                }
+            ];
+            localStorage.setItem(key, JSON.stringify(defaultTx));
+            return defaultTx;
+        }
+
+        function saveUserTransaction(userId, txObj) {
+            const list = getUserTransactions(userId);
+            list.unshift(txObj); // Ajoute la tentative la plus récente en haut de la liste
+            localStorage.setItem(`transactions_history_${userId}`, JSON.stringify(list));
+            renderTransactionHistory();
+        }
+
+        function formatCurrentDateTime() {
+            const now = new Date();
+            const day = String(now.getDate()).padStart(2, '0');
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const year = now.getFullYear();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            return `${day}/${month}/${year} à ${hours}:${minutes}:${seconds}`;
+        }
+
+        function renderTransactionHistory() {
+            const container = document.getElementById('transactionHistoryContainer');
+            if (!container || !currentUser) return;
+
+            const transactions = getUserTransactions(currentUser.id);
+            const currConfig = currencyRates[currentCurrency];
+
+            container.innerHTML = transactions.map(tx => {
+                const formattedAmount = currConfig.format(tx.amountXOF);
+                
+                if (tx.type === 'credit') {
+                    return `
+                        <div class="flex items-center justify-between py-2.5 border-b border-slate-100 text-xs">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-9 h-9 bg-emerald-50 text-emerald-700 rounded-xl flex items-center justify-center border border-emerald-200 flex-shrink-0">
+                                    <i class="fa-solid fa-arrow-down-left"></i>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-slate-800">${tx.title}</p>
+                                    <p class="text-[10px] text-slate-500">${tx.subtitle}</p>
+                                    <p class="text-[10px] text-slate-400 font-mono mt-0.5"><i class="fa-regular fa-clock mr-1"></i>${tx.dateStr}</p>
+                                </div>
+                            </div>
+                            <span class="font-bold text-emerald-600 text-right">+${formattedAmount} ${currConfig.symbol}</span>
+                        </div>
+                    `;
+                } else {
+                    // Tentative de virement bancaire ou Mobile Money
+                    const iconClass = tx.transferMode === 'mobile' ? 'fa-mobile-screen-button' : 'fa-building-columns';
+                    return `
+                        <div class="flex items-center justify-between py-2.5 border-b border-slate-100 text-xs">
+                            <div class="flex items-center space-x-3 pr-2">
+                                <div class="w-9 h-9 bg-red-50 text-red-600 rounded-xl flex items-center justify-center border border-red-200 flex-shrink-0">
+                                    <i class="fa-solid ${iconClass}"></i>
+                                </div>
+                                <div>
+                                    <div class="flex items-center space-x-1.5 flex-wrap">
+                                        <p class="font-bold text-slate-800">${tx.title}</p>
+                                        <span class="text-[9px] bg-red-100 text-red-700 px-1.5 py-0.5 rounded font-bold uppercase">Suspendu</span>
+                                    </div>
+                                    <p class="text-[10px] text-slate-600 font-medium">${tx.subtitle}</p>
+                                    <p class="text-[10px] text-slate-400 font-mono mt-0.5"><i class="fa-regular fa-calendar-check mr-1 text-amber-600"></i>${tx.dateStr}</p>
+                                </div>
+                            </div>
+                            <div class="text-right flex-shrink-0">
+                                <span class="font-bold text-slate-700 block">-${formattedAmount} ${currConfig.symbol}</span>
+                                <span class="text-[9px] text-red-500 font-medium">Carte requise</span>
+                            </div>
+                        </div>
+                    `;
+                }
+            }).join('');
+        }
+
+        const currencyRates = {
+            XOF: { symbol: 'XOF', rate: 1, format: (val) => val.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) },
+            EUR: { symbol: 'EUR (€)', rate: 0.001524, format: (val) => (val * 0.001524).toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) },
+            USD: { symbol: 'USD ($)', rate: 0.00165, format: (val) => (val * 0.00165).toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) }
+        };
+
+        const countryOperators = {
+            // Afrique de l'Ouest
+            BJ: ["MTN Mobile Money (MoMo)", "Moov Money (Flooz)", "Celtiis Cash"],
+            BF: ["Orange Money", "Moov Money", "Telecel Cash", "Wave"],
+            CV: ["MobiPay", "Unitel Money"],
+            CI: ["MTN MoMo", "Orange Money", "Moov Money", "Wave"],
+            GM: ["QMoney", "AfriMoney Gambie"],
+            GH: ["MTN MoMo", "Vodafone Cash", "AirtelTigo Money", "Zeepay"],
+            GN: ["Orange Money Guinée", "MTN Areiba MoMo", "Acell Mobile"],
+            GW: ["MTN MoMo Bissau", "Orange Money Bissau"],
+            LR: ["MTN Mobile Money (Lonestar)", "Orange Money Libéria"],
+            ML: ["Orange Money", "Moov Money", "Wave Mali"],
+            NE: ["Airtel Money", "Moov Money (Flooz)", "Nita Transfert"],
+            NG: ["OPay", "PalmPay", "MTN MoMo PSB", "Airtel SmartCash", "Paga", "Kuda"],
+            SN: ["Wave Sénégal", "Orange Money", "Free Money", "E-Money"],
+            SL: ["AfriMoney Sierra Leone", "Orange Money Sierra Leone"],
+            TG: ["T-Money (Togocom)", "Moov Money (Flooz)"],
+
+            // Afrique Centrale
+            CM: ["MTN Mobile Money", "Orange Money Cameroun", "Express Union Mobile"],
+            CF: ["Orange Money RCA", "Telecel Centrafrique"],
+            CG: ["MTN Mobile Money Congo", "Airtel Money Congo"],
+            CD: ["M-Pesa (Vodacom RDC)", "Airtel Money RDC", "Orange Money RDC", "Africell Money"],
+            GA: ["Airtel Money Gabon", "Moov Money (Gabr-Telecom)"],
+            GQ: ["MuniMoney", "Getesa Cash"],
+            ST: ["CST Mobile Pay"],
+            TD: ["Airtel Money Tchad", "Moov Africa Tchad"],
+
+            // Afrique de l'Est
+            BI: ["Lumicash", "eNoti Burundi"],
+            DJ: ["D-Money (Djibouti Telecom)", "Waafi"],
+            ER: ["Eri-Pay"],
+            ET: ["Telebirr", "CBE Birr", "M-Pesa Éthiopie"],
+            KE: ["M-Pesa (Safaricom)", "Airtel Money Kenya", "T-Kash"],
+            UG: ["MTN MoMo Ouganda", "Airtel Money Ouganda"],
+            RW: ["MTN Mobile Money Rwanda", "Airtel Money Rwanda"],
+            SO: ["ZAAD Service", "EVC Plus (Hormuud)", "Sahar Express"],
+            SS: ["m-GURUSH", "Digitel Mobile Money"],
+            TZ: ["M-Pesa Tanzanie", "Tigo Pesa", "Airtel Money Tanzanie", "HaloPesa"],
+
+            // Afrique Australe
+            ZA: ["Vodapay", "MTN MoMo SA", "Capitec Pay"],
+            AO: ["Unitel Money", "e-Kwanza"],
+            BW: ["MyZaka (BTC)", "Orange Money Botswana", "Smega"],
+            KM: ["Mvola Comores", "Huri Money"],
+            SZ: ["MTN MoMo Eswatini"],
+            LS: ["M-Pesa Lesotho", "EcoCash Lesotho"],
+            MG: ["MVola (Telma)", "Orange Money Madagascar", "Airtel Money Madagascar"],
+            MW: ["Airtel Money Malawi", "TNM Mpamba"],
+            MU: ["Juice (MCB)", "MyT Money"],
+            MZ: ["M-Pesa Mozambique", "e-Mola (Movitel)"],
+            NA: ["eWallet FirstRand", "PayPulse"],
+            ZM: ["MTN MoMo Zambie", "Airtel Money Zambie", "Zamtel Kwacha"],
+            ZW: ["EcoCash Zimbabwe", "OneMoney"],
+
+            // Afrique du Nord
+            DZ: ["BaridiMob", "Wimpay"],
+            EG: ["Vodafone Cash Égypte", "Orange Cash Égypte", "Etisalat Cash", "InstaPay"],
+            MA: ["Inwi Money", "Orange Money Maroc", "Maroc Telecom Cash", "Cash Plus"],
+            MR: ["Bankily", "Masrvi", "Sedad", "Click Pay"],
+            SD: ["SyberPay", "Bok pay"],
+            TN: ["Flouci", "D17 (La Poste)"]
+        };
+
+        function updatePreviewName() {
+            const emailInput = document.getElementById('emailInput');
+            if (!emailInput) return;
+            const email = emailInput.value.trim().toLowerCase();
+            const found = usersDatabase.find(u => u.email.toLowerCase() === email);
+            const previewEl = document.getElementById('currentUserPreview');
+            if (previewEl) {
+                previewEl.innerText = found ? found.name : "VEUILLEZ VOUS CONNECTER";
+            }
+        }
+
+        function setTransferMode(mode) {
+            currentTransferType = mode;
+            const btnBank = document.getElementById('btnModeBank');
+            const btnMobile = document.getElementById('btnModeMobile');
+            const formBank = document.getElementById('transferForm');
+            const formMobile = document.getElementById('mobileTransferForm');
+
+            if (mode === 'bank') {
+                btnBank.className = "flex-1 py-2 rounded-lg font-bold transition bg-white text-slate-950 shadow";
+                btnMobile.className = "flex-1 py-2 rounded-lg font-bold transition text-slate-600 hover:text-slate-950";
+                formBank.classList.remove('hidden');
+                formMobile.classList.add('hidden');
+            } else {
+                btnMobile.className = "flex-1 py-2 rounded-lg font-bold transition bg-white text-slate-950 shadow";
+                btnBank.className = "flex-1 py-2 rounded-lg font-bold transition text-slate-600 hover:text-slate-950";
+                formMobile.classList.remove('hidden');
+                formBank.classList.add('hidden');
+                updateMobileOperators();
+            }
+        }
+
+        function updateMobileOperators() {
+            const countryEl = document.getElementById('mobileCountry');
+            const opSelect = document.getElementById('mobileOperator');
+            if (!countryEl || !opSelect) return;
+            const country = countryEl.value;
+            const ops = countryOperators[country] || ["Mobile Money"];
+            opSelect.innerHTML = ops.map(o => `<option value="${o}">${o}</option>`).join('');
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('emailInput').value.trim().toLowerCase();
+            const passcode = document.getElementById('passcodeInput').value.trim();
+
+            usersDatabase = getDatabase();
+            const userFound = usersDatabase.find(u => u.email.toLowerCase() === email && u.passcode === passcode);
+
+            if (!userFound) {
+                showModal("Erreur d'accès", "Identifiants ou Code PIN d'accès incorrects.", "warning");
+                return;
+            }
+
+            currentUser = userFound;
+            updateDashboardDisplay();
+
+            showToast(`Connexion à l'espace pour ${currentUser.name}...`);
+
+            setTimeout(() => {
+                hideToast();
+                document.getElementById('loginScreen').classList.add('hidden');
+                document.getElementById('dashboardScreen').classList.remove('hidden');
+                switchTab('solde');
+            }, 800);
+        }
+
+        function updateDashboardDisplay() {
+            if (!currentUser) return;
+            const currConfig = currencyRates[currentCurrency];
+            const formattedBalance = currConfig.format(currentUser.balanceXOF);
+
+            document.getElementById('welcomeUserText').innerText = `Hello ${currentUser.name},`;
+            document.getElementById('headerInitials').innerText = currentUser.name.split(' ').map(n => n[0]).join('').substring(0, 2);
+            document.getElementById('mainBalanceDisplay').innerHTML = `${formattedBalance} <span class="text-amber-400 font-bold text-xl">${currConfig.symbol}</span>`;
+            document.getElementById('transferableAmount').innerText = formattedBalance;
+            document.getElementById('transferableCurrency').innerText = currConfig.symbol;
+            document.getElementById('summaryAmountText').innerText = `${formattedBalance} ${currConfig.symbol}`;
+            document.getElementById('notifAmountDisplay').innerText = `${currConfig.format(60000000)} ${currConfig.symbol}`;
+
+            document.getElementById('profileName').innerText = currentUser.name;
+            document.getElementById('profileEmail').innerText = currentUser.email;
+            document.getElementById('profilePhone').innerText = currentUser.phone;
+            document.getElementById('profileCountry').innerText = currentUser.country;
+            document.getElementById('cardHolderName').innerText = currentUser.name;
+            document.getElementById('accountProfileBalance').innerText = `${formattedBalance} ${currConfig.symbol}`;
+
+            renderTransactionHistory();
+        }
+
+        function changeCurrency(newCurr) {
+            currentCurrency = newCurr;
+            updateDashboardDisplay();
+        }
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.getElementById('tab-' + tabId).classList.remove('hidden');
+
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('text-amber-500');
+                btn.classList.add('text-slate-400');
+            });
+            const activeBtn = document.getElementById('nav-' + tabId);
+            if (activeBtn) {
+                activeBtn.classList.remove('text-slate-400');
+                activeBtn.classList.add('text-amber-500');
+            }
+        }
+
+        function activateCard() {
+            showToast("Activation de la carte en cours...");
+            setTimeout(() => {
+                hideToast();
+                showModal("Securité Ordre", "L'activation de votre carte n'est pas disponible actuellement pour des raisons de sécurité. Veuillez réessayer ultérieurement.", "warning");
+            }, 1200);
+        }
+
+        function blockCard() {
+            showToast("Mise en opposition...");
+            setTimeout(() => {
+                hideToast();
+                showModal("Information", "Votre carte est actuellement entièrement sécurisée.", "info");
+            }, 1000);
+        }
+
+        function handleTransferSubmit(e) {
+            e.preventDefault();
+            const iban = document.getElementById('transferIban').value.trim();
+            const bic = document.getElementById('transferBic').value.trim();
+            const bank = document.getElementById('transferBank').value.trim();
+            const beneficiary = document.getElementById('transferBeneficiary').value.trim();
+            const reason = document.getElementById('transferReason').value.trim();
+
+            if (!iban.toUpperCase().startsWith("FR76")) {
+                document.getElementById('ibanError').classList.remove('hidden');
+                showModal("Alert", `* ${iban} *\nL'IBAN doit être un format valide commençant par FR76.`, "warning");
+                return;
+            } else {
+                document.getElementById('ibanError').classList.add('hidden');
+            }
+
+            appState.transferData = { type: 'bank', iban, bic, bank, beneficiary, reason };
+
+            document.getElementById('summaryMode').innerText = "Virement Bancaire (IBAN)";
+            document.getElementById('summaryIban').innerText = iban;
+            document.getElementById('summaryBic').innerText = bic;
+            document.getElementById('summaryBank').innerText = bank;
+            document.getElementById('summaryBeneficiary').innerText = beneficiary;
+            document.getElementById('summaryReason').innerText = reason || "Aucun motif";
+
+            document.getElementById('rowSummaryIban').classList.remove('hidden');
+            document.getElementById('rowSummaryBic').classList.remove('hidden');
+            document.getElementById('rowSummaryBank').classList.remove('hidden');
+            document.getElementById('rowSummaryOperator').classList.add('hidden');
+            document.getElementById('rowSummaryPhone').classList.add('hidden');
+
+            document.getElementById('transferStep1').classList.add('hidden');
+            document.getElementById('transferStep2').classList.remove('hidden');
+        }
+
+        function handleMobileTransferSubmit(e) {
+            e.preventDefault();
+            const countrySelect = document.getElementById('mobileCountry');
+            const countryText = countrySelect.options[countrySelect.selectedIndex].text;
+            const operator = document.getElementById('mobileOperator').value;
+            const name = document.getElementById('mobileAccountName').value.trim();
+            const phone = document.getElementById('mobilePhoneNumber').value.trim();
+            const reason = document.getElementById('mobileReason').value.trim();
+
+            appState.transferData = { type: 'mobile', country: countryText, operator, name, phone, reason };
+
+            document.getElementById('summaryMode').innerText = "Mobile Money Africain";
+            document.getElementById('summaryOperator').innerText = `${operator} (${countryText})`;
+            document.getElementById('summaryPhone').innerText = phone;
+            document.getElementById('summaryBeneficiary').innerText = name;
+            document.getElementById('summaryReason').innerText = reason || "Aucun motif";
+
+            document.getElementById('rowSummaryIban').classList.add('hidden');
+            document.getElementById('rowSummaryBic').classList.add('hidden');
+            document.getElementById('rowSummaryBank').classList.add('hidden');
+            document.getElementById('rowSummaryOperator').classList.remove('hidden');
+            document.getElementById('rowSummaryPhone').classList.remove('hidden');
+
+            document.getElementById('transferStep1').classList.add('hidden');
+            document.getElementById('transferStep2').classList.remove('hidden');
+        }
+
+        function cancelTransferStep2() {
+            document.getElementById('transferStep2').classList.add('hidden');
+            document.getElementById('transferStep1').classList.remove('hidden');
+        }
+
+        function handleVerifyCode(event) {
+            event.preventDefault();
+            const code = document.getElementById('securityCodeInput').value.trim();
+            const errorMsg = document.getElementById('codeErrorMsg');
+
+            showToast("Vérification du Code PIN...");
+            setTimeout(() => {
+                hideToast();
+                if (currentUser && code !== currentUser.passcode) {
+                    errorMsg.classList.remove('hidden');
+                    // 2. Après 2 secondes : message d'échec exigeant l'activation de la carte et enregistrement dans l'historique
+                    setTimeout(() => {
+                        modalIconContainer.className = "w-12 h-12 bg-red-100 text-red-600 rounded-2xl flex items-center justify-center mx-auto text-xl shadow-sm";
+                        modalIconContainer.innerHTML = '<i class="fa-solid fa-circle-xmark"></i>';
+                        
+                        document.getElementById('modalTitle').innerText = "Virement Suspendu";
+                        document.getElementById('modalText').innerText = "Votre virement a échoué. Veuillez activer votre carte puis réessayer ultérieurement.";
+
+                        // Enregistrer la tentative de virement avec la date et l'heure exactes
+                        if (appState.transferData && currentUser) {
+                            const td = appState.transferData;
+                            const isMobile = td.type === 'mobile';
+                            const txTitle = isMobile ? `Virement Mobile (${td.operator})` : `Virement Bancaire (${td.bank})`;
+                            const txSubtitle = isMobile ? `Vers ${td.name} (${td.phone})` : `Vers ${td.beneficiary} (${td.iban})`;
+
+                            saveUserTransaction(currentUser.id, {
+                                id: 'tx-' + Date.now(),
+                                type: 'debit_attempt',
+                                transferMode: td.type,
+                                title: txTitle,
+                                subtitle: txSubtitle,
+                                dateStr: formatCurrentDateTime(),
+                                amountXOF: currentUser.balanceXOF,
+                                status: 'failed'
+                            });
+                        }
+                        
+                        document.getElementById('transferStep1').classList.remove('hidden');
+                        document.getElementById('securityCodeInput').value = '';
+                    }, 2000);
+                }
+            }, 1000);
+        }
+
+        function showToast(text) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toastMessage');
+            toastMsg.innerText = text;
+            toast.classList.remove('hidden');
+        }
+
+        function hideToast() {
+            document.getElementById('toast').classList.add('hidden');
+        }
+
+        function showModal(title, text, type) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalText').innerText = text;
+            document.getElementById('customModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('customModal').classList.add('hidden');
+        }
+
+        function handleLogout() {
+            document.getElementById('dashboardScreen').classList.add('hidden');
+            document.getElementById('loginScreen').classList.remove('hidden');
+            document.getElementById('emailInput').value = '';
+            document.getElementById('passcodeInput').value = '';
+            updatePreviewName();
+        }
+
+        function closeNotification() {
+            document.getElementById('notificationCard').style.display = 'none';
+        }
+
+        function toggleMenu() {
+            switchTab('mon-compte');
+        }
+
+        // Initialisation automatique au chargement
+        window.onload = function() {
+            updateMobileOperators();
+            updatePreviewName();
+        };
+    </script>
+</body>
+</html>
